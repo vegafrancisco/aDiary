@@ -1,0 +1,32 @@
+﻿Log
+================================
+Reunión 20/03/2018 13:30-14:30
+
+Temas Revisados:
+
+-Creacion del repositorio github.
+
+-Creacion del server Discord.
+
+-Correccion y replanteamiento del problema-solucion, y publico objetivo del proyecto.
+
+-Investigación del concepto de gamificación.
+
+
+Presentes en reunion: Alfredo Mendez, Antonio Ayres, Francisco Vega, Maximilliano Torres
+Presentes en Discord: -
+Ausentes: -
+
+================================
+Reunión 22/03/18 
+Temas Revisados:
+- Planteamiento de la idea.
+- Diseño de la idea-proyecto.
+- Designación de funciones dinamicas.
+
+Presentes en reunion: Alfredo Mendez, Antonio Ayres.
+Presentes en Discord: Francisco Vega, Maximilliano Torres.
+Ausentes: -
+
+================================
+

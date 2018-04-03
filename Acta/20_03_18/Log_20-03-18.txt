@@ -1,0 +1,6 @@
+Log: Reunión 20/03/2018 13:30-14:30
+Temas Revisados:
+-Creacion del repositorio github.
+-Creacion del server Discord.
+-Correccion y replanteamiento del problema-solucion, y publico objetivo del proyecto.
+-Investigación del concepto de gamificación.

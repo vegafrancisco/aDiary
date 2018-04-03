@@ -1,0 +1,5 @@
+Problema que resuelve: En la actualidad, la mayoria de los jovenes que cursan por educacion basica/media no encuentran divertido el hacer sus responsabilidades,
+gracias a que hay actividades mas divertidas, por lo que este proyecto resolvera este problema uniendo ambas partes, osea, usando el concepto de gamificación.
+
+
+Publico Objetivo: Para padres que deseen incentivar la responsabilidad de sus hijos de una forma mas divertida.
