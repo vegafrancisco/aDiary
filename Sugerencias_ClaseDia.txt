@@ -1,0 +1,10 @@
+La clase misión es basicamente un string pero con un atributo mas que indica si esta fue completada o no.
+Hay 2 opciones para hacer la clase DIA
+
+1.- hacer una clase InventarioMisiones y hacer las operaciones del arraylist desde ahi.
+
+2.- hacer el arraylist de misiones en la misma clase dia, lo cual implica hacer las operaciones de agregar y quitar directamente ahi.
+
+La idea es que maxee pueda usar un atributo(objeto) de tipo "Dia" en la clase menu, y poder agregar, quitar y cambiar el estado de
+"isCompleted" en caso se que el usuario marque mision completada en alguna opción del menu.
+No olvidar el tener el dia en el que se ejecuta el programa como atributo en Dia.
