@@ -1,0 +1,96 @@
+﻿Log
+================================
+Reunión 20/03/2018 13:30-14:30
+
+Temas Revisados:
+
+-Creacion del repositorio github.
+
+-Creacion del server Discord.
+
+-Correccion y replanteamiento del problema-solucion, y publico objetivo del proyecto.
+
+-Investigación del concepto de gamificación.
+
+
+Presentes en reunion: Alfredo Mendez, Antonio Ayres, Francisco Vega, Maximilliano Torres.
+Presentes en Discord: -
+Ausentes: -
+
+================================
+Reunión 22/03/18 
+Temas Revisados:
+- Planteamiento de la idea.
+- Diseño de la idea-proyecto.
+- Designación de funciones dinamicas.
+
+Presentes en reunion: Alfredo Mendez, Antonio Ayres.
+Presentes en Discord: Francisco Vega, Maximilliano Torres.
+Ausentes: -
+
+=================================
+Reunión 27/03/2018:
+- Bosquejo diseño grafico.
+- Cambios en la navegacion de ventanas definidas previamente.
+- Comparacion con Trello.
+- Moqups.
+
+Presentes en reunion: Alfredo Mendez, Antonio Ayres, Francisco Vega, Maximilliano Torres.
+Presentes en Discord: -
+Ausentes: -
+=================================
+Reunión 04/04/2018:
+- División tareas informe.
+- División tareas prototipo.
+---------------------------------
+- Encargado informe N°1 : Francisco Vega.
+- Encargado revisión prototipo: Maximiliano Torres.
+
+Presentes en reunion: -
+Presentes en Discord: Alfredo Mendez, Antonio Ayres, Francisco Vega, Maximilliano Torres.
+Ausentes: -
+=================================
+Reunión 10/04/2018:
+- Designar clases a trabajar y sus encargados.
+
+- Clase Misión (Evento): Antonio.
+- Clase Menú: Maximiliano. 
+- Clase Horario: Alfredo.
+- Clase Recompensas: Francisco.
+
+Presentes en reunion: Alfredo Mendez, Antonio Ayres, Francisco Vega, Maximilliano Torres.
+Presentes en Discord: -
+Ausentes: -
+=================================
+Reunión 13/04/2018:
+- Creación del drive para el informe.
+- Definición de plazos para entregar.
+*Informe.
+*Codigo(prototipo).
+---------------------------------
+- Entrega del informe:  Viernes 20/04.
+- Entrega del codigo(Prototipo): Viernes 20/04.
+
+Método de entrega:
+
+- . java lo sube cada UNO al github.
+- Carpeta del proyecto N/E : Maxee.
+- Diseño grafico (moqups) : Alfredo.
+- Copia del informe a github: Francisco.
+
+Presentes en reunion: Alfredo Mendez, Antonio Ayres, Francisco Vega, Maximilliano Torres.
+Presentes en Discord: -
+Ausentes: -
+=================================
+Reunión 17/04/2018:
+-Inicio Análisis y modelación del problema.
+-Aclaración sobre entrega código en general.
+-Reuniones extra discord para ensamble de código.
+---------------------------------
+
+-Reunión Sabado: Discusión detalles faltantes código y ayuda.
+
+Presentes en reunion: Alfredo Mendez, Antonio Ayres, Francisco Vega, Maximilliano Torres.
+Presentes en Discord: -
+Ausentes: -
+=================================

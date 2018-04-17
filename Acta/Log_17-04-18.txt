@@ -62,3 +62,35 @@ Presentes en reunion: Alfredo Mendez, Antonio Ayres, Francisco Vega, Maximillian
 Presentes en Discord: -
 Ausentes: -
 =================================
+Reunión 13/04/2018:
+- Creación del drive para el informe.
+- Definición de plazos para entregar.
+*Informe.
+*Codigo(prototipo).
+---------------------------------
+- Entrega del informe:  Viernes 20/04.
+- Entrega del codigo(Prototipo): Viernes 20/04.
+
+Método de entrega:
+
+- . java lo sube cada UNO al github.
+- Carpeta del proyecto N/E : Maxee.
+- Diseño grafico (moqups) : Alfredo.
+- Copia del informe a github: Francisco.
+
+Presentes en reunion: Alfredo Mendez, Antonio Ayres, Francisco Vega, Maximilliano Torres.
+Presentes en Discord: -
+Ausentes: -
+=================================
+Reunión 17/04/2018:
+-Inicio Análisis y modelación del problema.
+-Aclaración sobre entrega código en general.
+-Reuniones extra discord para ensamble de código.
+---------------------------------
+
+-Reunión Sabado: Discusión detalles faltantes código y ayuda.
+
+Presentes en reunion: Alfredo Mendez, Antonio Ayres, Francisco Vega, Maximilliano Torres.
+Presentes en Discord: -
+Ausentes: -
+=================================
