@@ -2,7 +2,7 @@
  * Proyecto aDiary
  * Alfredo Mendez, Antonio Ayres, Maximiliano Torres, Francisco Vega
  */
-package adiary;
+package aDiary;
 
 /**
  * Esta clase permite guardar tanto la mision(tarea) en si,
@@ -17,8 +17,8 @@ public class Mision {
     
     /**
     * Constructor sin parametros, con valores por default.
-    * atributo mision = ""
-    * atributo isCompleted = false.
+    * <p>Atributo mision = ""</p>
+    * <p>Atributo isCompleted = false.</p>
     */
     
     public Mision(){
@@ -28,8 +28,8 @@ public class Mision {
     
     /**
      * Constructor con parametros para inicializarlo con valores otorgados.
-     * @param mision - String
-     * @param isCompleted - boolean.
+     * @param mision String
+     * @param isCompleted boolean.
     */
     
     public Mision(String mision, boolean isCompleted){
@@ -39,7 +39,7 @@ public class Mision {
     
     /**
      * Asigna una nueva mision a la insiancia de esta clase.
-     * @param mision 
+     * @param mision String
      */
 
     public void setMision(String mision) {
@@ -48,7 +48,8 @@ public class Mision {
     
     /**
      * Asigna un nuevo valor al booleano isCompleted a a la insiancia de esta clase.
-     * @param isCompleted - boolean, representa el estado de la mision.
+     * "isCompleted" representa el estado de la mision.
+     * @param isCompleted boolean
      */
 
     public void setIsCompleted(boolean isCompleted) {
@@ -66,7 +67,8 @@ public class Mision {
     
     /**
      * Obtiene el valor de "isCompleted" de la instancia de esta clase.
-     * @return boolean.
+     * "isCompleted" representa el estado de la mision.
+     * @return boolean
      */
 
     public boolean getIsCompleted() {
@@ -91,7 +93,7 @@ public class Mision {
     
     @Override
     public String toString() {
-        return "Mision: " + this.mision + "\t" +  "Estado" + estado() + '}';
+        return "Mision: " + this.mision + "\t" + "Estado: " + estado();
     }
     
 }
