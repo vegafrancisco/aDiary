@@ -1,5 +1,5 @@
-
-import com.sun.org.apache.xml.internal.security.encryption.AgreementMethod;
+package aDiary;
+//import com.sun.org.apache.xml.internal.security.encryption.AgreementMethod;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JOptionPane;
@@ -13,22 +13,22 @@ import javax.swing.JOptionPane;
  *
  * @author Francisco
  */
-public class Recompenza {
+public class Recompensa {
 
     private String nombre;
     Random random = new Random();
 
-    private ArrayList<String> Recompenzas() {
+    private ArrayList<String> Recompensas() {
 
         ArrayList<String> nombres = new ArrayList<>();
-        // Estas serian como las recompenzas predeterminadas 
-        nombres.add("Recompenza 1");
-        nombres.add("Recompenza 2");
-        nombres.add("Recompenza 4");
-        nombres.add("Recompenza 4");
-        nombres.add("Recompenza 5");
-        nombres.add("Recompenza 6");
-        nombres.add("Recompenza 7");
+        // Estas serian como las recompensas predeterminadas 
+        nombres.add("Recompensa 1");
+        nombres.add("Recompensa 2");
+        nombres.add("Recompensa 4");
+        nombres.add("Recompensa 4");
+        nombres.add("Recompensa 5");
+        nombres.add("Recompensa 6");
+        nombres.add("Recompensa 7");
 
         return nombres;
     }
@@ -53,15 +53,15 @@ public class Recompenza {
         return nombre;
     }
 
-    public Recompenza() {
-        this.nombre = nombre(Recompenzas());
+    public Recompensa() {
+        this.nombre = nombre(Recompensas());
 
     }
 
     public void mostrar() {
 //       
 
-        System.out.println("Tu recompenza es  " + nombre);
+        System.out.println("Tu recompensa es :" + nombre);
     }
 
 }

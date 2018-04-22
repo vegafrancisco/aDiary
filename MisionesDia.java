@@ -9,7 +9,7 @@ import java.util.Calendar;
 
 /**
  * Esta clase permite tanto agregar misiones, quitarlas y mostrarlas 
- * indicando el dÃ­a en las que se agregaron.
+ * indicando el día en las que se agregaron.
  * @author amendezllaupe
  */
 
@@ -24,12 +24,16 @@ public class MisionesDia {
     /**
      * Constructor sin parametros, con valores por default, donde se instancia
      * el arrayList 'misiones', el calendario 'fecha' y se asigna
-     * el dÃ­a con un mÃ©todo de la clase Calendar.
+     * el día con un método de la clase Calendar.
     */
     public MisionesDia(){
         misiones = new ArrayList<>();
         fecha = Calendar.getInstance();
         dia = fecha.get(Calendar.DAY_OF_MONTH);
+    }
+    
+    public ArrayList<Mision> getMisiones(){ //Alfredo falto algo importante <3
+    	return this.misiones;
     }
     /**
      * Agrega una nueva mision con los parametros:
@@ -37,10 +41,10 @@ public class MisionesDia {
      * @param isCompleted boolean
      */
     public void agregarMision(String mision, boolean isCompleted){
-        misiones.add(new Mision(mision,isCompleted));
+       misiones.add(new Mision(mision, isCompleted));
     }
     /**
-     * Quita una misiÃ³n con la posiciÃ³n de esta dentro del arrayList 'misiones'.
+     * Quita una misión con la posición de esta dentro del arrayList 'misiones'.
      * @param posicion int
      */
     public void quitarMision(int posicion){
@@ -51,23 +55,23 @@ public class MisionesDia {
         }
     }
     /**
-     * Recorre el arrayList 'misiones' y va alamcenando cada posiciÃ³n en un 
+     * Recorre el arrayList 'misiones' y va alamcenando cada posición en un 
      * string 'stringMision'
      * @return String 
      */
     private String almacenarLista(){
         String stringMision = "";
         for(int i = 0; i < misiones.size(); i++){
-            stringMision += misiones.get(i).toString() + "\n"; //agrega los datos de la misiÃ³n de la posiciÃ³n i
-        }                                                      // y  los aÃ±ade a los datos de la pos anterior
+            stringMision += "["+(i+1)+"] "+misiones.get(i).toString() + "\n"; //agrega los datos de la misión de la posición i
+        }                                                      // y  los añade a los datos de la pos anterior
         return stringMision;
     }
     /**
      * 
-     * @return dÃ­a y misiones del dÃ­a
+     * @return día y misiones del día
      */
     @Override
     public String toString(){
-      return "DÃ­a: " +Integer.toString(dia) + "\n" + almacenarLista();
+      return "Día: " +Integer.toString(dia) + "\n" + almacenarLista();
     }
 }

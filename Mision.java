@@ -19,25 +19,24 @@ public class Mision {
     * Constructor sin parametros, con valores por default.
     * <p>Atributo mision = ""</p>
     * <p>Atributo isCompleted = false.</p>
+     * @param isCompleted2 
+     * @param mision2 
     */
     
-    public Mision(){
-        this.mision = "";
-        this.isCompleted = false;
-    }
     
     /**
      * Constructor con parametros para inicializarlo con valores otorgados.
      * @param mision String
      * @param isCompleted boolean.
     */
+
     
-    public Mision(String mision, boolean isCompleted){
-        this.mision = mision;
-        this.isCompleted = isCompleted;
-    }
-    
-    /**
+    public Mision(String mision, boolean isCompleted) {
+		this.mision = mision;
+		this.isCompleted = isCompleted;
+	}
+
+	/**
      * Asigna una nueva mision a la insiancia de esta clase.
      * @param mision String
      */
@@ -87,7 +86,7 @@ public class Mision {
     
     /**
      * Override de toString(). 
-     * Devuelve informaciÃ³n sobre la mision y su estado.
+     * Devuelve información sobre la mision y su estado.
      * @return String
      */
     
