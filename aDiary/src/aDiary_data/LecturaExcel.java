@@ -50,39 +50,6 @@ public class LecturaExcel {
         this.valorUltimaFila=0;
         datos = new ArrayList<>();
     }
-    /**
-     * Lee una hoja (sheetName) de un Excel.
-     * @param rutaFile Ruta del archivo (String)
-     * @param sheetName Nombre de la hoja del excel (String).
-     * @throws IOException 
-     */
-    public void readExcel(String rutaFile, String sheetName) throws IOException {
-        String dataAux = "";
-        File file = new File (""); 
-        FileInputStream inputStream = new FileInputStream(file);  
-        XSSFWorkbook excelWorkbook ; 
-        excelWorkbook = new XSSFWorkbook(inputStream);
-        Sheet excelSheet = excelWorkbook.getSheet(sheetName);
-        this.valorUltimaFila = excelSheet.getLastRowNum();
-        int filasCount = this.valorUltimaFila-excelSheet.getFirstRowNum();
-        int cellNum;
-        
-        for (int i=0; i< filasCount+1 ; i++) { 
-            Row filas;
-            filas = excelSheet.getRow(i);
-            cellNum = filas.getLastCellNum(); 
-            for (int j=0 ; j < cellNum; j++) { 
-                try{
-                    dataAux += filas.getCell(j).getStringCellValue() + ";";
-                } catch (NullPointerException e){
-                    dataAux += "EMPTYCELL;";
-                } 
-            }
-            dataAux += "%";
-            
-        }
-        this.data.setContenido(dataAux);
-    }
     
     /**
      * Este metodo lee el contenicdo de una celda solicitada
@@ -107,28 +74,6 @@ public class LecturaExcel {
         }catch (NullPointerException e){
             
         }
-    }
-    
-    public String getContenidoCelda(){
-        return contenidoCelda;
-    }
-    
-    /**
-     * Obtiene el valor de la ultima Fila
-     * @return el valor de la ultima fila (int)
-     */
-    
-    public int getValorUltimaFila(){
-        return this.valorUltimaFila;
-    }
-    
-    /**
-     * Obtiene los datos.
-     * @return data (Dato)
-     */
-    
-    public Dato getData(){
-        return this.data;
     }
     
     public void leerExcel(Propietario usr, String rutaExcel){
@@ -178,7 +123,9 @@ public class LecturaExcel {
                     }
             
                 }
+                
             }
+            
         } else {
         	HashMap map = new HashMap<Object, Object>();
             CreateExcel nuevoExcel = new CreateExcel("./template.xlsx",0,rutaExcel,"Hoja1",(Map)map);
@@ -187,9 +134,30 @@ public class LecturaExcel {
             }
         }
         
-        
         this.estadoLeerExcel = noCatch;
         
+    }
+    
+    public String getContenidoCelda(){
+        return contenidoCelda;
+    }
+    
+    /**
+     * Obtiene el valor de la ultima Fila
+     * @return el valor de la ultima fila (int)
+     */
+    
+    public int getValorUltimaFila(){
+        return this.valorUltimaFila;
+    }
+    
+    /**
+     * Obtiene los datos.
+     * @return data (Dato)
+     */
+    
+    public Dato getData(){
+        return this.data;
     }
     
     
