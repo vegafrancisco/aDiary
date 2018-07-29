@@ -13,7 +13,7 @@ public class Propietario {
 
 	public Propietario() {
 		// TODO - implement Propietario.Propietario
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
 	}
 
 	public String getNombre() {
