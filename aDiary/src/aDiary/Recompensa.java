@@ -1,67 +1,42 @@
 package aDiary;
-//import com.sun.org.apache.xml.internal.security.encryption.AgreementMethod;
-import java.util.ArrayList;
-import java.util.Random;
-import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author Francisco
- */
+import java.util.ArrayList;
+
 public class Recompensa {
 
-    private String nombre;
-    Random random = new Random();
+	private String nombreRecompensaElegida;
+	private ArrayList<String> recompensas;
 
-    private ArrayList<String> Recompensas() {
+	public Recompensa() {
+		recompensas = new ArrayList<String>();
+		
+	}
 
-        ArrayList<String> nombres = new ArrayList<>();
-        // Estas serian como las recompensas predeterminadas 
-        nombres.add("Recompensa 1");
-        nombres.add("Recompensa 2");
-        nombres.add("Recompensa 4");
-        nombres.add("Recompensa 4");
-        nombres.add("Recompensa 5");
-        nombres.add("Recompensa 6");
-        nombres.add("Recompensa 7");
+	public ArrayList<String> getRecompensa() {
+		return recompensas;
+	}
 
-        return nombres;
-    }
+	public String getNombreRecompensaElegida() {
+		return this.nombreRecompensaElegida;
+	}
+	public void setRecompensas(ArrayList<String> recompensas) {
+		this.recompensas = recompensas;
+	}
 
-//    private String ElegirRecompeza(ArrayList<String>nombre){
-//        
-//        
-//           String RecopenzaElegida=nombre.get((Integer.parseInt(JOptionPane.showInputDialog("Elegir Recompenza")))-1);
-//        
-//        
-//       return RecopenzaElegida;
-//    }
-//    
-//    public void   MostrarTodas(ArrayList<String>nombre){
-//        for (int i=0; i<nombre.size();i++) {
-//            System.out.println(""+nombre.get(i-1));
-//        }
-//      
-//    }
-    private String nombre(ArrayList<String> nombres) {
-        String nombre = nombres.get(random.nextInt(nombres.size() - 1));
-        return nombre;
-    }
+	public void setNombreRecompensaElegida(String nombreRecompensaElegida) {
+		this.nombreRecompensaElegida = nombreRecompensaElegida;
+	}
 
-    public Recompensa() {
-        this.nombre = nombre(Recompensas());
+	private void addRecompensasDefault() { //Reservado para toño
+		recompensas.add("Recompensa ejemplo");
+	}
 
-    }
+	public String seleccionarRecompensa(int posicion) { 
+		return recompensas.get(posicion);
+	}
 
-    public void mostrar() {
-//       
-
-        System.out.println("Tu recompensa es :" + nombre);
-    }
+	//public String toString() { //Arreglar
+		//return algo;
+	//}
 
 }

@@ -12,6 +12,8 @@ package aDiary;
 
 public class Mision {
     
+	
+	Hora hora;
     private String mision; //La mision(tarea).
     private boolean isCompleted; //Indica el estado de la tarea.
     
