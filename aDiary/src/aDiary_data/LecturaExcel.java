@@ -49,6 +49,7 @@ public class LecturaExcel {
         contenidoCelda = "";
         this.valorUltimaFila=0;
         datos = new ArrayList<>();
+        this.estadoLeerExcel = false;
     }
     
     /**
@@ -188,6 +189,7 @@ public class LecturaExcel {
     public void setEstadoLeerExcel(boolean estadoLeerExcel) {
         this.estadoLeerExcel = estadoLeerExcel;
     }
+    
     
     
     
