@@ -1,4 +1,5 @@
 package aDiary;
+
 import java.util.Scanner;
 
 public class Menu {
@@ -78,7 +79,7 @@ public class Menu {
 		System.out.println("Qué misión completo muchacho");
 		int eleccion = sc.nextInt();
 		m.getMisiones().get(eleccion-1).setIsCompleted(true);
-		z.mostrar();
+		//z.mostrar();
 		
 	}
 	

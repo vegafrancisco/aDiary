@@ -1,3 +1,5 @@
+package aDiary;
+
 public class Login {
 
 	private String nombreIngresado;

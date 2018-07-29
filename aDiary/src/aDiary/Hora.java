@@ -1,3 +1,5 @@
+package aDiary;
+
 public class Hora {
 
 	Mision mision;

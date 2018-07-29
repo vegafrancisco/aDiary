@@ -1,3 +1,5 @@
+package aDiary;
+
 public class MenuPrincipal {
 
 	private Dia misionesDia;

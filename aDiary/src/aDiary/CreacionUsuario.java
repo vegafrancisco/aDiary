@@ -1,3 +1,5 @@
+package aDiary;
+
 public class CreacionUsuario {
 
 	private Propietario usuarioNuevo;

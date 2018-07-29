@@ -1,3 +1,5 @@
+package aDiary;
+
 import java.util.*;
 
 public class Historial {
