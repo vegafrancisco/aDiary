@@ -20,5 +20,21 @@ public class LecturaExcelTest {
 		l.leerExcel(usr, rutaExcel);
 		assertEquals(true ,l.isEstadoLeerExcel());
 	}
+	
+	@Test
+	public void testCasoFijoProyecto() {
+		LecturaExcel l = new LecturaExcel();
+		
+		Propietario usr = new Propietario();
+		usr.setNombre("Test");
+		
+		String rutaExcel = "./usrdata/" + usr.getNombre() + "/misiones.xlsx";
+		
+		CreacionCarpeta c = new CreacionCarpeta(usr, "");
+        c.crearCarpetaUsuario();
+        
+        l.leerExcel(usr, "./usrdata/" + usr.getNombre() + "/misiones.xlsx");
+		
+	}
 
 }

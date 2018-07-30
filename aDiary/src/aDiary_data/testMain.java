@@ -10,17 +10,11 @@ public class testMain {
 		// TODO Auto-generated method stub
 		LecturaExcelTest test = new LecturaExcelTest();
 		test.testNoFile();
+		test.testCasoFijoProyecto();
 		
 		
 		
-		/*Propietario p = new Propietario();
-		
-		CreacionCarpeta c = new CreacionCarpeta(p, "");
-        
-        c.crearCarpetaUsuario();
-        LecturaExcel l = new LecturaExcel();
-        
-        l.leerExcel(p, "./usrdata/" + p.getNombre() + "/misiones.xlsx"); */
+       
 
 	}
 
