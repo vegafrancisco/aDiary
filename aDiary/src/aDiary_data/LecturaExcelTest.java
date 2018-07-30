@@ -18,7 +18,7 @@ public class LecturaExcelTest {
 		usr.setNombre("Test");
 		String rutaExcel = "./nothing";
 		l.leerExcel(usr, rutaExcel);
-		assertEquals(l.isEstadoLeerExcel(), false);
+		assertEquals(true ,l.isEstadoLeerExcel());
 	}
 
 }
