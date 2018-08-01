@@ -77,7 +77,7 @@ public class LecturaExcel {
         }
     }
     
-    public void leerExcel(Propietario usr, String rutaExcel){
+    public void leerExcel(String rutaExcel){
         File file = new File(rutaExcel);
         FileInputStream inputStream = null;
         boolean noCatch = true;
@@ -127,12 +127,6 @@ public class LecturaExcel {
                 
             }
             
-        } else {
-        	HashMap map = new HashMap<Object, Object>();
-            CreateExcel nuevoExcel = new CreateExcel("./template.xlsx",0,rutaExcel,"Hoja1",(Map)map);
-            if(nuevoExcel.execute()) {
-            	leerExcel(usr, rutaExcel);
-            }
         }
         
         this.estadoLeerExcel = noCatch;

@@ -13,7 +13,10 @@ public class Propietario {
 
 	public Propietario() {
 		// TODO - implement Propietario.Propietario
-		//throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException()
+		perfiles = new ArrayList<>();
+		perfiles.add("test");
+		perfilActivo = perfiles.get(0);
 	}
 
 	public String getNombre() {

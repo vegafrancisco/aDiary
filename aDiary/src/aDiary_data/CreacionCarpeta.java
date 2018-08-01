@@ -24,8 +24,8 @@ public class CreacionCarpeta {
         this.Usuario = null;
     }
     
-    public void setNombreUsuario(Propietario nombreUsuario) {
-        this.Usuario = nombreUsuario;
+    public void setUsuario(Propietario usuario) {
+        this.Usuario = usuario;
     }
 
     public void setNombreSubUsuario(String nombreSubUsuario) {
@@ -51,7 +51,8 @@ public class CreacionCarpeta {
     }
     
     public void crearCarpetaSubUsuario(){
-        this.directorioSubUsr = new File("/usrdata/" + this.nombreSubUsuario);
-        this.directorioSubUsr.mkdirs();
+    	this.directorioSubUsr = new File("./usrdata/" + this.Usuario.getNombre() + "/" +  this.nombreSubUsuario);
+   		this.directorioSubUsr.mkdirs();
+    	
     }
 }
