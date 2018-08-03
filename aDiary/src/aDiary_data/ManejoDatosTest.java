@@ -8,7 +8,7 @@ import aDiary.Propietario;
 
 public class ManejoDatosTest {
 
-	@Test
+	/*@Test
 	public void test() {
 		Propietario usr = new Propietario();
 		usr.setNombre("Test");
@@ -32,6 +32,6 @@ public class ManejoDatosTest {
 		
 		manejo.solicitarDatos(usr, rutaExcel);
 		
-	}
+	}*/
 
 }

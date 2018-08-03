@@ -1,6 +1,7 @@
 package aDiary_data;
 
 import aDiary.Propietario;
+
 import my.jutils.poi.*;
 
 import java.util.ArrayList;
@@ -16,16 +17,24 @@ public class ManejoDatos {
 	
 	
 	/* Metodo primera ejecución */
-	public void init() {
-		CreacionCarpeta initFolder = new CreacionCarpeta();
-		initFolder.crearCarpetaDatos();
-		HashMap map = new HashMap<Object, Object>();
-        CreateExcel nuevoExcel = new CreateExcel("./template.xlsx",0,"./usrdatos","Hoja1",(Map)map);
+	public boolean init() {
+		String rutaCarpeta = "./usrdatos";
+		CreacionCarpeta initFolder = new CreacionCarpeta(rutaCarpeta);
+		initFolder.crearCarpeta();
+		if(initFolder.isDirectorioCreado()) {
+			rutaCarpeta = "./usrdatos/usuarios.xlsx";
+			HashMap map = new HashMap<Object, Object>();
+	        CreateExcel nuevoExcel = new CreateExcel("./template.xlsx",0,rutaCarpeta,"Hoja1",(Map)map);
+			nuevoExcel.execute();
+			return true;
+		}else {
+			return false;
+		}
 		
 	}
 	
-    public void solicitarDatos(Propietario usr, String rutaExcel){
-    	nuevaCarpeta(usr, usr.getPerfilActivo());
+    public void solicitarDatos(Propietario usr, int solicitud){
+    	String rutaExcel = "";
         LecturaExcel read = new LecturaExcel();
         read.leerExcel(rutaExcel);
         if(!read.isEstadoLeerExcel()) {
@@ -39,9 +48,23 @@ public class ManejoDatos {
         }
     }
     
-    public void nuevaCarpeta(Propietario usr, String subUsr) {
-    	CreacionCarpeta c = new CreacionCarpeta(usr, subUsr);
-    	c.crearCarpetaUsuario();
-    	c.crearCarpetaSubUsuario();
+    private String elegirCarpeta(Propietario usr, int opcion) {
+    	if(opcion == 1) {
+    		return "./usrdata/";
+    	}else if (opcion ==2) {
+    		return "./usrdata/" + usr.getNombre(); 
+    	} else {
+    		return "";
+    	}
+    	
+    }
+    
+    private void pasosCarpeta(Propietario usr, int opcion) {
+    	String rutaCarpeta = elegirCarpeta(usr, opcion);
+    	CreacionCarpeta newcarpet = new CreacionCarpeta(rutaCarpeta);
+    	if(!usr.getPerfilActivo().equals("FLAG")) {
+    		newcarpet.crearCarpeta();
+    	}
+    	
     }
 }
