@@ -63,8 +63,6 @@ public class ModExcel {
         
         row = sheet.getRow(numFila);
         cell = row.getCell(numCol);
-            
- 
         
         try{
             cell.getStringCellValue();

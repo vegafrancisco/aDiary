@@ -14,8 +14,6 @@ import java.util.Map;
  */
 public class ManejoDatos {
 	
-	
-	
 	/* Metodo primera ejecución */
 	public boolean init() {
 		String rutaCarpeta = "./usrdatos";
@@ -48,23 +46,20 @@ public class ManejoDatos {
         }
     }
     
-    private String elegirCarpeta(Propietario usr, int opcion) {
-    	if(opcion == 1) {
-    		return "./usrdata/";
-    	}else if (opcion ==2) {
-    		return "./usrdata/" + usr.getNombre(); 
-    	} else {
-    		return "";
+    private void pasosCarpeta(Propietario usr) {
+    	
+    	String rutaUsuario = "./usrdata/" + usr.getNombre();
+    	CreacionCarpeta carpeta = new CreacionCarpeta(rutaUsuario);
+    	carpeta.crearCarpeta();
+    	
+    	if(!usr.getPerfiles().isEmpty()) {
+    		for(int i = 0; i<usr.getPerfiles().size() ; i++) {
+    			carpeta.setRutaDirectorio(rutaUsuario + "/" + usr.getPerfiles().get(i));
+    			carpeta.crearCarpeta();
+    		}
     	}
     	
     }
     
-    private void pasosCarpeta(Propietario usr, int opcion) {
-    	String rutaCarpeta = elegirCarpeta(usr, opcion);
-    	CreacionCarpeta newcarpet = new CreacionCarpeta(rutaCarpeta);
-    	if(!usr.getPerfilActivo().equals("FLAG")) {
-    		newcarpet.crearCarpeta();
-    	}
-    	
-    }
+    
 }

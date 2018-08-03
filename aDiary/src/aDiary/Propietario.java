@@ -14,9 +14,7 @@ public class Propietario {
 	public Propietario() {
 		// TODO - implement Propietario.Propietario
 		//throw new UnsupportedOperationException()
-		perfiles = new ArrayList<>();
-		perfiles.add("test");
-		perfilActivo = perfiles.get(0);
+		perfilActivo = "#FLAG#";
 	}
 
 	public String getNombre() {

@@ -2,6 +2,8 @@ package aDiary_data;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 import aDiary.Propietario;
@@ -33,5 +35,11 @@ public class ManejoDatosTest {
 		manejo.solicitarDatos(usr, rutaExcel);
 		
 	}*/
+	
+	@Test
+	public void testCarpetas() {
+		Propietario usr = new Propietario();
+		ArrayList<String> a = new ArrayList<>(); 
+	}
 
 }
