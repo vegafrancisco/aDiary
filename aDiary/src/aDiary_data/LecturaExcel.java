@@ -7,10 +7,6 @@ package aDiary_data;
  * and open the template in the editor.
  */
 
-/**
- *
- * @author tonio
- */
 import aDiary.Propietario;
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,6 +31,7 @@ import my.jutils.poi.*;
  *Esta clase es utilizada para leer el Excel en la ejecucion del programa.
  * Utilizando la libreria de Apache POI 3.17 ()
  * @author PCAMPOS
+ * @author tonio
  */
 public class LecturaExcel {
     
@@ -94,7 +91,6 @@ public class LecturaExcel {
             try {
                 excelWorkbook = new XSSFWorkbook(inputStream);
             } catch (IOException ex) {
-                //Logger.getLogger(LecturaExcel.class.getName()).log(Level.SEVERE, null, ex);
                 noCatch = false;
             }
             if(noCatch){
@@ -110,17 +106,14 @@ public class LecturaExcel {
                     
                     for (int j=0 ; j < cellNum; j++) { 
                         Dato aux = new Dato();
-                        this.datos.add(aux);
                         try{
                             aux.setContenido(filas.getCell(j).getStringCellValue());
-                            //dataAux += filas.getCell(j).getStringCellValue() + ";";
                         } catch (NullPointerException e){
                             aux.setContenido("EMPTYCELL");
-                            //dataAux += "EMPTYCELL;";
                         }
                         aux.setColumna(j);
                         aux.setFila(i);
-                        System.out.println(aux);
+                        this.datos.add(aux);
                     }
             
                 }

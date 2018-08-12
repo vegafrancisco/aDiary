@@ -4,8 +4,8 @@ import java.util.*;
 
 public class Dia {
 
-	Horario horario;
-	Historial historial;
+	private Horario horario;
+	private Historial historial;
 	private Collection<Hora> horas;
 	private Calendar fecha;
 	private int dia;

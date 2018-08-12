@@ -89,6 +89,9 @@ public class Propietario {
 	public void setPerfilActivo(String perfilActivo) {
 		this.perfilActivo = perfilActivo;
 	}
+	
+	
+
 
 	public String toString() {
 		// TODO - implement Propietario.toString

@@ -1,4 +1,4 @@
-package aDiary_data;
+package aDiary_test;
 
 import static org.junit.Assert.*;
 

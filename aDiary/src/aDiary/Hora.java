@@ -3,7 +3,6 @@ package aDiary;
 public class Hora {
 
 	Mision mision;
-	Dia dia;
 	private String rangoHora;
 	private String horaIni;
 	private String horaFin;

@@ -1,16 +1,18 @@
-package aDiary_data;
+package aDiary_test;
 
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import aDiary.Propietario;
+import aDiary_data.ManejoDatos;
 
 public class ManejoDatosTest {
 
-	/*@Test
+	@Ignore("outdated")
 	public void test() {
 		Propietario usr = new Propietario();
 		usr.setNombre("Test");
@@ -19,10 +21,9 @@ public class ManejoDatosTest {
 		
 		ManejoDatos manejo = new ManejoDatos();
 		
-		manejo.solicitarDatos(usr, rutaExcel);
 	}
 	
-	@Test
+	@Ignore("outdated")
 	public void testFail() {
 		
 		Propietario usr = new Propietario();
@@ -32,14 +33,19 @@ public class ManejoDatosTest {
 		
 		ManejoDatos manejo = new ManejoDatos();
 		
-		manejo.solicitarDatos(usr, rutaExcel);
 		
-	}*/
+	}
 	
-	@Test
+	@Ignore("not yet implemented")
 	public void testCarpetas() {
 		Propietario usr = new Propietario();
 		ArrayList<String> a = new ArrayList<>(); 
+	}
+	
+	@Test
+	public void testInit() {
+		ManejoDatos manejo = new ManejoDatos();
+		manejo.init();
 	}
 
 }

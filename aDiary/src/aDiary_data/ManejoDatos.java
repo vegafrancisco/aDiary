@@ -14,25 +14,24 @@ import java.util.Map;
  */
 public class ManejoDatos {
 	
-	/* Metodo primera ejecución */
-	public boolean init() {
-		String rutaCarpeta = "./usrdatos";
-		CreacionCarpeta initFolder = new CreacionCarpeta(rutaCarpeta);
-		initFolder.crearCarpeta();
-		if(initFolder.isDirectorioCreado()) {
-			rutaCarpeta = "./usrdatos/usuarios.xlsx";
-			HashMap map = new HashMap<Object, Object>();
-	        CreateExcel nuevoExcel = new CreateExcel("./template.xlsx",0,rutaCarpeta,"Hoja1",(Map)map);
-			nuevoExcel.execute();
-			return true;
-		}else {
-			return false;
-		}
-		
+	private ArrayList<Dato> datos;
+	
+	public ManejoDatos() {
+		this.datos = new ArrayList<>();
 	}
 	
-    public void solicitarDatos(Propietario usr, int solicitud){
-    	String rutaExcel = "";
+	/* Metodo primera ejecución */
+	public void init() {
+		String rutaCarpeta = "./usrdata";
+		CreacionCarpeta initFolder = new CreacionCarpeta(rutaCarpeta);
+		initFolder.crearCarpeta();
+		rutaCarpeta = "./usrdata/usuarios.xlsx";
+		HashMap map = new HashMap<Object, Object>();
+        CreateExcel nuevoExcel = new CreateExcel("./template.xlsx",0,rutaCarpeta,"Hoja1",(Map)map);
+		nuevoExcel.execute();		
+	}
+	
+    public void solicitarDatos(String rutaExcel){
         LecturaExcel read = new LecturaExcel();
         read.leerExcel(rutaExcel);
         if(!read.isEstadoLeerExcel()) {
@@ -43,6 +42,8 @@ public class ManejoDatos {
             if(nuevoExcel.execute()) {
             	read.leerExcel(rutaExcel);
             }
+        }else {
+        	this.datos = read.getDatos();
         }
     }
     
@@ -60,6 +61,17 @@ public class ManejoDatos {
     	}
     	
     }
+
+	public ArrayList<Dato> getDatos() {
+		return datos;
+	}
+
+	public void setDatos(ArrayList<Dato> datos) {
+		this.datos = datos;
+	}
+    
+    
+    
     
     
 }

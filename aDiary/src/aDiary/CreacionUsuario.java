@@ -2,26 +2,16 @@ package aDiary;
 
 public class CreacionUsuario {
 
-	private Propietario usuarioNuevo;
+	
 	private String nombreUsrNuevo;
 	private String contrasenaUsrNuevo;
 
 	public CreacionUsuario() {
 		// TODO - implement CreacionUsuario.CreacionUsuario
-		throw new UnsupportedOperationException();
+		
 	}
 
-	public Propietario getUsuarioNuevo() {
-		return this.usuarioNuevo;
-	}
-
-	/**
-	 * 
-	 * @param usuarioNuevo
-	 */
-	public void setUsuarioNuevo(Propietario usuarioNuevo) {
-		this.usuarioNuevo = usuarioNuevo;
-	}
+	
 
 	public String getNombreUsrNuevo() {
 		return this.nombreUsrNuevo;

@@ -25,9 +25,10 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 public class ModExcel {
     
     private String valor;
+    private Dato datoAntiguo;
     
-    public ModExcel(){
-        this.valor = "";
+    public ModExcel(String valor){
+        this.valor = valor;
     }
     
     /**
@@ -55,11 +56,11 @@ public class ModExcel {
         }
         XSSFSheet sheet = wb.getSheetAt(0); 
         XSSFRow row; 
-        XSSFCell cell; 
+        XSSFCell cell;
         
-        if(valor.equals("END!")){
+        /*if(valor.equals("END!")){
             sheet.createRow(numFila);
-        }
+        }*/
         
         row = sheet.getRow(numFila);
         cell = row.getCell(numCol);
