@@ -24,23 +24,47 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 public class ModExcel {
     
-    private String valor;
-    private Dato datoAntiguo;
+    private String valorACambiar;
+    private String valorNuevo;
     
-    public ModExcel(String valor){
-        this.valor = valor;
+    
+    public ModExcel(String valorNuevo, String valorACambiar){
+        this.valorNuevo = valorNuevo;
+        this.valorACambiar = valorACambiar;
+    }
+    
+    public ModExcel() {
+    	this.valorNuevo = "";
+    	this.valorACambiar = "";
+    }
+    
+    
+    private int[] obtenerPosicionDato(String rutaExcel) {
+    	//init
+    	int[] pos = new int[2];
+    	BusquedaDatos busqueda = new BusquedaDatos(this.valorACambiar);
+    	
+    	if(busqueda.buscarCoincidencia(rutaExcel)) {
+    		pos[0] = busqueda.getDatoBusqueda().getFila();
+    		pos[1] = busqueda.getDatoBusqueda().getColumna();
+    		
+    		return pos;
+    	}
+    	
+    	
+    	return null;
+    	
     }
     
     /**
      * Modifica El valor de una celda con el valor que se le entrega
      * 
-     * @param numFila número de la fila en donde se encuentra la celda en EXCEL.
-     * @param numCol número de la columna en donde se encuentra la celda en EXCEL.
+     * @param hoja - valor de la posicion de la hoja
      * @param rutaExcel Ruta del Archivo EXCEL.
-     * @throws IOException 
      */
-    public void modificarCelda(int numFila, int numCol, String rutaExcel) { 
-        rutaExcel = "";
+    
+    public boolean modificarCelda(String rutaExcel, int hoja) { 
+    	
         InputStream ExcelParaLeer = null; 
         try {
             ExcelParaLeer = new FileInputStream(rutaExcel);
@@ -54,7 +78,7 @@ public class ModExcel {
         } catch (IOException ex) {
             Logger.getLogger(ModExcel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        XSSFSheet sheet = wb.getSheetAt(0); 
+        XSSFSheet sheet = wb.getSheetAt(hoja); 
         XSSFRow row; 
         XSSFCell cell;
         
@@ -62,20 +86,131 @@ public class ModExcel {
             sheet.createRow(numFila);
         }*/
         
-        row = sheet.getRow(numFila);
-        cell = row.getCell(numCol);
+        int[] posicionDato = obtenerPosicionDato(rutaExcel);
         
-        try{
-            cell.getStringCellValue();
-        }catch (NullPointerException e){
-            cell = sheet.getRow(numFila).createCell(numCol);
+        if(posicionDato != null) {
+        	
+        	row = sheet.getRow(posicionDato[0]); //fila
+            cell = row.getCell(posicionDato[1]); //columna
+        	cell.setCellValue(this.valorNuevo); 
+        	try (FileOutputStream arcSalida = new FileOutputStream(rutaExcel)) {
+                wb.write(arcSalida);
+            }catch(IOException e){
+                    
+            }
+        	
+        }else {
+        	return false;
         }
-        cell.setCellValue(valor); 
+        
+        try {
+			wb.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        return true;
+       
+    
+    }
+    
+    public void prepararCeldas(String rutaExcel, int cantidadDatos) {
+    	 InputStream ExcelParaLeer = null; 
+         try {
+             ExcelParaLeer = new FileInputStream(rutaExcel);
+         } catch (FileNotFoundException ex) {
+             //https://pastebin.com/kKfLTwcY
+             Logger.getLogger(ModExcel.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         XSSFWorkbook wb = null; 
+         try {
+             wb = new XSSFWorkbook(ExcelParaLeer);
+         } catch (IOException ex) {
+             Logger.getLogger(ModExcel.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         XSSFSheet sheet = wb.getSheetAt(0);
+         XSSFRow row; 
+         XSSFCell cell;
+         sheet.createRow(sheet.getLastRowNum()+1);
+         row = sheet.getRow(sheet.getLastRowNum());
+         
+         for(int i = 0; i<cantidadDatos; i++) {
+        	 cell = row.createCell(i);
+         }
+         
+         
+         try (FileOutputStream arcSalida = new FileOutputStream(rutaExcel)) {
+             wb.write(arcSalida);
+         }catch(IOException e){
+                 
+         }
+         
+         try {
+			wb.close();
+         } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    public void prepararHoja(String rutaExcel) {
+    	InputStream ExcelParaLeer = null; 
+        try {
+            ExcelParaLeer = new FileInputStream(rutaExcel);
+        } catch (FileNotFoundException ex) {
+            //https://pastebin.com/kKfLTwcY
+            Logger.getLogger(ModExcel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        XSSFWorkbook wb = null; 
+        try {
+            wb = new XSSFWorkbook(ExcelParaLeer);
+        } catch (IOException ex) {
+            Logger.getLogger(ModExcel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        XSSFSheet sheet = wb.createSheet();
+        XSSFRow row; 
+        XSSFCell cell;
+        row = sheet.createRow(0);
+        cell = row.createCell(0);
+        
         try (FileOutputStream arcSalida = new FileOutputStream(rutaExcel)) {
             wb.write(arcSalida);
         }catch(IOException e){
-            
+                
         }
+        
+        try {
+			wb.close();
+        } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
     }
+
+
+	public String getValorNuevo() {
+		return valorNuevo;
+	}
+
+
+	public void setValorNuevo(String valor) {
+		this.valorNuevo = valor;
+	}
+
+
+	public String getValorACambiar() {
+		return valorACambiar;
+	}
+
+
+	public void setValorACambiar(String valorACambiar) {
+		this.valorACambiar = valorACambiar;
+	}
+	
+	
+    
+    
     
 }

@@ -12,14 +12,28 @@ import aDiary_data.ManejoDatos;
 
 public class ManejoDatosTest {
 
-	@Ignore("outdated")
-	public void test() {
+	//@Ignore("Test only for first run")
+	@Test
+	public void testInit() {
+		ManejoDatos manejo = new ManejoDatos();
+		System.out.println(manejo.init());
+	}
+
+	
+	@Test
+	public void testLecturaMisionesUsuario() {
 		Propietario usr = new Propietario();
 		usr.setNombre("Test");
 		
-		String rutaExcel = "./usrData/" + usr.getNombre() + "/misiones.xlsx";
+		String rutaExcel = "./usrdata/" + usr.getNombre() + "/misiones.xlsx";
 		
-		ManejoDatos manejo = new ManejoDatos();
+		ManejoDatos manejo = new ManejoDatos(usr);
+		
+		manejo.solicitarDatos(rutaExcel);
+		
+		for(int i = 0; i<manejo.getDatos().size(); i++) {
+			System.out.println("testLecturaMisionesUsuario: " + manejo.getDatos().get(i));
+		}
 		
 	}
 	
@@ -43,9 +57,13 @@ public class ManejoDatosTest {
 	}
 	
 	@Test
-	public void testInit() {
+	public void testLecturaUsuarios() {
 		ManejoDatos manejo = new ManejoDatos();
-		manejo.init();
+		manejo.solicitarDatos("./usrdata/usuarios.xlsx");
+		for(int i = 0; i<manejo.getDatos().size(); i++) {
+			System.out.println(manejo.getDatos().get(i));
+		}
 	}
-
+	
+	
 }

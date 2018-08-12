@@ -1,5 +1,7 @@
 package aDiary;
 
+import aDiary_data.ManejoDatos;
+
 public class CreacionUsuario {
 
 	
@@ -39,26 +41,33 @@ public class CreacionUsuario {
 
 	/**
 	 * 
-	 * @param contrasenaVerificadora
+	 * @param contraseñaVerificadora
 	 */
-	private void verificarContrasena(String contrasenaVerificadora) {
+	private boolean verificarContraseña(String contraseñaVerificadora) {
 		// TODO - implement CreacionUsuario.verificarContrasena
-		throw new UnsupportedOperationException();
+		return contraseñaVerificadora.equals(contrasenaUsrNuevo);
 		
 	}
 
 	/**
 	 * 
-	 * @param contrasenaVerificadora
+	 * @param contraseñaVerificadora
 	 */
-	public void crearUsuario(String contrasenaVerificadora) {
+	public Propietario crearUsuario(String contraseñaVerificadora) {
 		// TODO - implement CreacionUsuario.crearUsuario
-		throw new UnsupportedOperationException();
+		if(verificarContraseña(contraseñaVerificadora)) {
+			Propietario usr = new Propietario();
+			usr.setNombre(this.nombreUsrNuevo);
+			usr.setContrasena(this.nombreUsrNuevo);
+			return usr;
+		}
+		return null;
 	}
 
 	public void guardarUsuario() {
 		// TODO - implement CreacionUsuario.guardarUsuario
-		throw new UnsupportedOperationException();
+		ManejoDatos manejo = new ManejoDatos();
+		manejo.añadirUsuario(this.getNombreUsrNuevo(), this.getContrasenaUsrNuevo(), 0);
 	}
 
 	/**

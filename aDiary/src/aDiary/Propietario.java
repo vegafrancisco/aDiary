@@ -15,6 +15,7 @@ public class Propietario {
 		// TODO - implement Propietario.Propietario
 		//throw new UnsupportedOperationException()
 		perfilActivo = "#FLAG#";
+		this.perfiles = new ArrayList<>();
 	}
 
 	public String getNombre() {
