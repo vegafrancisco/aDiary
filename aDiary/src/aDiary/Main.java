@@ -1,10 +1,12 @@
 package aDiary;
 
+import aDiary_GUI.Login_GUI_exp;
+
 public class Main {
  
 	
 	public static void main(String[]args) {
-		Menu menusito = new Menu();
-		menusito.menuPrincipal();
+		Login_GUI_exp ini = new Login_GUI_exp("Iniciar Sesion");
+		ini.setVisible(true);
 	}
 }

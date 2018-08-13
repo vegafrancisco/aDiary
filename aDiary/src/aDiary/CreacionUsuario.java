@@ -7,6 +7,7 @@ public class CreacionUsuario {
 	
 	private String nombreUsrNuevo;
 	private String contrasenaUsrNuevo;
+	private String perfilNuevo;
 
 	public CreacionUsuario() {
 		// TODO - implement CreacionUsuario.CreacionUsuario
@@ -59,15 +60,20 @@ public class CreacionUsuario {
 			Propietario usr = new Propietario();
 			usr.setNombre(this.nombreUsrNuevo);
 			usr.setContrasena(this.nombreUsrNuevo);
+			if(this.perfilNuevo != "default" && this.perfilNuevo != "") {
+				usr.setPerfilActivo(this.perfilNuevo);
+			}
 			return usr;
 		}
 		return null;
 	}
 
-	public void guardarUsuario() {
+	public void guardarUsuario(Propietario usr) {
 		// TODO - implement CreacionUsuario.guardarUsuario
-		ManejoDatos manejo = new ManejoDatos();
+		ManejoDatos manejo = new ManejoDatos(usr);
 		manejo.añadirUsuario(this.getNombreUsrNuevo(), this.getContrasenaUsrNuevo(), 0);
+		manejo.crearArchivosPerfil(usr.getPerfilActivo());
+		manejo.crearExcelRecompensa();
 	}
 
 	/**
@@ -87,5 +93,19 @@ public class CreacionUsuario {
 		// TODO - implement CreacionUsuario.activarControlParental
 		throw new UnsupportedOperationException();
 	}
+
+
+
+	public String getPerfilNuevo() {
+		return perfilNuevo;
+	}
+
+
+
+	public void setPerfilNuevo(String perfilNuevo) {
+		this.perfilNuevo = perfilNuevo;
+	}
+	
+	
 
 }

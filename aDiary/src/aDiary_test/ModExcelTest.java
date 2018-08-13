@@ -18,7 +18,7 @@ public class ModExcelTest {
 	@Test
 	public void testAñadirCeldas() {
 		ModExcel mod = new ModExcel("Test2", "");
-		mod.prepararCeldas("./usrdata/usuarios.xlsx", 2);
+		mod.prepararCeldas("./usrdata/usuarios.xlsx", 2,0);
 		System.out.println(mod.modificarCelda("./usrdata/usuarios.xlsx",0));
 		
 		mod.setValorNuevo("Contraseña2");

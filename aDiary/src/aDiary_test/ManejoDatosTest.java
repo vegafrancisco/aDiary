@@ -20,7 +20,7 @@ public class ManejoDatosTest {
 	}
 
 	
-	@Test
+	@Ignore("Outdated")
 	public void testLecturaMisionesUsuario() {
 		Propietario usr = new Propietario();
 		usr.setNombre("Test");

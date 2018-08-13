@@ -4,28 +4,32 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class Login_GUI extends JFrame{
+import aDiary.Login;
+
+public class Login_GUI_exp extends JFrame implements ActionListener{
 
 	private JButton ingresoButton;
     private JTextField nombreUsuarioTF;
-    private JTextField contraseñaTF;
+    private JPasswordField contraseñaTF;
     private JLabel nombreUsuarioLabel;
     private JLabel contraseñaLabel;
     
-    public Login_GUI(String title){
+    public Login_GUI_exp(String title){
         super(title);
         
         initComponents();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         elementSize();
         addWindow();
+        
+        this.ingresoButton.addActionListener(this);
     }
     
     public void initComponents(){
         this.contraseñaLabel = new JLabel("Contraseña");
         this.nombreUsuarioLabel = new JLabel("Usuario");
         this.nombreUsuarioTF = new JTextField("");
-        this.contraseñaTF = new JTextField("");
+        this.contraseñaTF = new JPasswordField("");
         this.ingresoButton = new JButton("INGRESAR");
     }
     
@@ -50,5 +54,24 @@ public class Login_GUI extends JFrame{
         this.add(this.ingresoButton);
         this.add(new JLabel());
     }
+
+	@Override
+	public void actionPerformed(ActionEvent ae) {
+		// TODO Auto-generated method stub
+		if(ae.getSource() == this.ingresoButton) {
+			Login login = new Login();
+			login.setNombreIngresado(this.nombreUsuarioTF.getText());
+			String password = new String(this.contraseñaTF.getPassword());
+			login.setContrasenaIngresada(password);
+			if(login.validarLogin()) {
+				JOptionPane.showMessageDialog(this, "Operacion exitosa");
+				
+				//NEW VENTANA!
+				this.setVisible(false);
+			}else {
+				JOptionPane.showMessageDialog(this, "Usuario o Contraseña erroneos");
+			}
+		}
+	}
     
 }

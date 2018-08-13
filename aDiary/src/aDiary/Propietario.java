@@ -14,7 +14,7 @@ public class Propietario {
 	public Propietario() {
 		// TODO - implement Propietario.Propietario
 		//throw new UnsupportedOperationException()
-		perfilActivo = "#FLAG#";
+		this.perfilActivo = "defecto";
 		this.perfiles = new ArrayList<>();
 	}
 

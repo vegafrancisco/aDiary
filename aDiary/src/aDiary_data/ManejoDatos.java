@@ -45,29 +45,25 @@ public class ManejoDatos {
 			String rutaCarpeta = "./usrdata";
 			CreacionCarpeta initFolder = new CreacionCarpeta(rutaCarpeta);
 			initFolder.crearCarpeta();
-			rutaCarpeta = "./usrdata/usuarios.xlsx";
+			String rutaExcel = rutaCarpeta + "/usuarios.xlsx";
 			HashMap map = new HashMap<Object, Object>();
-			CreateExcel nuevoExcel = new CreateExcel("./template.xlsx",0,rutaCarpeta,"Hoja1",(Map)map);
+			CreateExcel nuevoExcel = new CreateExcel("./template.xlsx",0,rutaExcel,"Hoja1",(Map)map);
 			nuevoExcel.execute();
+			ModExcel template = new ModExcel();
+	    	template.moldearExcel(rutaExcel, 2, 0);
 			return true;
 		}
 		return false;
 	}
 	
-    public void solicitarDatos(String rutaExcel){
+    public boolean solicitarDatos(String rutaExcel){
         LecturaExcel read = new LecturaExcel();
         read.leerExcel(rutaExcel);
         if(!read.isEstadoLeerExcel()) {
-        	if(usrDato !=null) {
-        		pasosCarpeta();
-        	}
-        	HashMap map = new HashMap<Object, Object>();
-            CreateExcel nuevoExcel = new CreateExcel("./template.xlsx",0,rutaExcel,"Hoja1",(Map)map);
-            if(nuevoExcel.execute()) {
-            	read.leerExcel(rutaExcel);
-            }
+        	return true;
         }else {
         	this.datos = read.getDatos();
+        	return false;
         }
     }
     
@@ -90,14 +86,14 @@ public class ManejoDatos {
     public boolean añadirRecompensa(String recompensa, int hoja) {
     	String rutaExcel = "./usrdata/" + this.usrDato.getNombre() + "/recompensa.xlsx";	
     	ModExcel mod = new ModExcel(recompensa, "");
-    	mod.prepararCeldas(rutaExcel, 1);
+    	mod.prepararCeldas(rutaExcel, 1,0);
     	return mod.modificarCelda(rutaExcel, hoja);
     }
     
     public boolean añadirUsuario(String usuario, String contraseña, int hoja) {
     	String rutaExcel = "./usrdata/usuarios.xlsx";
-    	ModExcel mod = new ModExcel(usuario, "");
-    	mod.prepararCeldas(rutaExcel, 2);
+    	ModExcel mod = new ModExcel(usuario, ""); 
+    	mod.prepararCeldas(rutaExcel, 2,0);
     	if(mod.modificarCelda(rutaExcel, hoja)) {
     		mod.setValorNuevo(contraseña);
     		return mod.modificarCelda(rutaExcel, hoja);
@@ -106,8 +102,7 @@ public class ManejoDatos {
     	}
     }
     
-    private void pasosCarpeta() {
-    	
+    /*private void pasosCarpeta() {
     	String rutaUsuario = "./usrdata/" + usrDato.getNombre();
     	CreacionCarpeta carpeta = new CreacionCarpeta(rutaUsuario);
     	carpeta.crearCarpeta();
@@ -119,6 +114,28 @@ public class ManejoDatos {
     		}
     	}
     	
+    }*/
+    
+    public void crearArchivosPerfil(String perfilACrear) {
+    	String rutaUsuario = "./usrdata/" + this.usrDato.getNombre() + "/" + perfilACrear;
+    	CreacionCarpeta carpeta = new CreacionCarpeta(rutaUsuario);
+    	carpeta.crearCarpeta();
+    	crearExcelMisiones(rutaUsuario + "/misiones.xlsx");
+    }
+    
+    private void crearExcelMisiones(String rutaExcel) {
+    	//String rutaExcel = "./usrdata/" + this.usrDato.getNombre() + "/" + this.usrDato.getPerfilActivo()+"/misiones.xlsx";
+    	HashMap map = new HashMap<Object, Object>();
+    	CreateExcel nuevoExcel = new CreateExcel("./template.xlsx",0,rutaExcel,"Hoja1",(Map)map);
+    	nuevoExcel.execute();
+    	
+    }
+    
+    public void crearExcelRecompensa(){
+    	String rutaExcel = "./usrdata/" + this.usrDato.getNombre() + "/recompensas.xlsx";
+    	HashMap map = new HashMap<Object, Object>();
+    	CreateExcel nuevoExcel = new CreateExcel("./template.xlsx",0,rutaExcel,"Hoja1",(Map)map);
+    	nuevoExcel.execute();
     }
 
 	public ArrayList<Dato> getDatos() {
@@ -137,10 +154,5 @@ public class ManejoDatos {
 		this.usrDato = usrDato;
 	}
 	
-	
-    
-    
-    
-    
     
 }

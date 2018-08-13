@@ -65,19 +65,7 @@ public class ModExcel {
     
     public boolean modificarCelda(String rutaExcel, int hoja) { 
     	
-        InputStream ExcelParaLeer = null; 
-        try {
-            ExcelParaLeer = new FileInputStream(rutaExcel);
-        } catch (FileNotFoundException ex) {
-            //https://pastebin.com/kKfLTwcY
-            Logger.getLogger(ModExcel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        XSSFWorkbook wb = null; 
-        try {
-            wb = new XSSFWorkbook(ExcelParaLeer);
-        } catch (IOException ex) {
-            Logger.getLogger(ModExcel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    	XSSFWorkbook wb = iniciarWorkbook(rutaExcel);
         XSSFSheet sheet = wb.getSheetAt(hoja); 
         XSSFRow row; 
         XSSFCell cell;
@@ -93,68 +81,85 @@ public class ModExcel {
         	row = sheet.getRow(posicionDato[0]); //fila
             cell = row.getCell(posicionDato[1]); //columna
         	cell.setCellValue(this.valorNuevo); 
-        	try (FileOutputStream arcSalida = new FileOutputStream(rutaExcel)) {
-                wb.write(arcSalida);
-            }catch(IOException e){
-                    
-            }
+        	writeExcel(wb, rutaExcel);
         	
         }else {
         	return false;
         }
         
-        try {
-			wb.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        closeWorkbook(wb);
         
         return true;
        
     
     }
     
-    public void prepararCeldas(String rutaExcel, int cantidadDatos) {
-    	 InputStream ExcelParaLeer = null; 
-         try {
-             ExcelParaLeer = new FileInputStream(rutaExcel);
-         } catch (FileNotFoundException ex) {
-             //https://pastebin.com/kKfLTwcY
-             Logger.getLogger(ModExcel.class.getName()).log(Level.SEVERE, null, ex);
-         }
-         XSSFWorkbook wb = null; 
-         try {
-             wb = new XSSFWorkbook(ExcelParaLeer);
-         } catch (IOException ex) {
-             Logger.getLogger(ModExcel.class.getName()).log(Level.SEVERE, null, ex);
-         }
-         XSSFSheet sheet = wb.getSheetAt(0);
-         XSSFRow row; 
-         XSSFCell cell;
-         sheet.createRow(sheet.getLastRowNum()+1);
-         row = sheet.getRow(sheet.getLastRowNum());
+    public void prepararCeldas(String rutaExcel, int cantidadDatos, int hoja) {
+		XSSFWorkbook wb = iniciarWorkbook(rutaExcel);
+		XSSFSheet sheet = wb.getSheetAt(hoja);
+		XSSFRow row; 
+		XSSFCell cell;
+		sheet.createRow(sheet.getLastRowNum()+1);
+		row = sheet.getRow(sheet.getLastRowNum());
          
-         for(int i = 0; i<cantidadDatos; i++) {
-        	 cell = row.createCell(i);
-         }
+		for(int i = 0; i<cantidadDatos; i++) {
+			cell = row.createCell(i);
+		}
          
          
-         try (FileOutputStream arcSalida = new FileOutputStream(rutaExcel)) {
-             wb.write(arcSalida);
-         }catch(IOException e){
-                 
-         }
-         
-         try {
+		writeExcel(wb, rutaExcel);
+        
+        closeWorkbook(wb);
+    }
+    
+    public void moldearExcel(String rutaExcel, int moldeoCeldas,int hoja) {
+    	XSSFWorkbook wb = iniciarWorkbook(rutaExcel);
+        XSSFSheet sheet = wb.getSheetAt(hoja);
+        XSSFRow row; 
+        XSSFCell cell;
+        row = sheet.getRow(0);
+        for(int i = 1; i<moldeoCeldas; i++) {
+        	cell = row.createCell(i);
+        }
+        
+    	writeExcel(wb, rutaExcel);
+        
+        closeWorkbook(wb);
+        
+    }
+    
+    public void prepararHoja(String rutaExcel) {
+    	XSSFWorkbook wb = iniciarWorkbook(rutaExcel);
+        XSSFSheet sheet = wb.createSheet();
+        XSSFRow row; 
+        XSSFCell cell;
+        row = sheet.createRow(0);
+        cell = row.createCell(0);
+        
+        writeExcel(wb, rutaExcel);
+        
+        closeWorkbook(wb);
+        
+    }
+    
+    private void closeWorkbook(XSSFWorkbook wb) {
+    	try {
 			wb.close();
-         } catch (IOException e) {
+        } catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
+
+    private void writeExcel(XSSFWorkbook wb, String rutaExcel) {
+    	try (FileOutputStream arcSalida = new FileOutputStream(rutaExcel)) {
+            wb.write(arcSalida);
+        }catch(IOException e){
+                
+        }
+    }
     
-    public void prepararHoja(String rutaExcel) {
+    private XSSFWorkbook iniciarWorkbook(String rutaExcel) {
     	InputStream ExcelParaLeer = null; 
         try {
             ExcelParaLeer = new FileInputStream(rutaExcel);
@@ -168,27 +173,8 @@ public class ModExcel {
         } catch (IOException ex) {
             Logger.getLogger(ModExcel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        XSSFSheet sheet = wb.createSheet();
-        XSSFRow row; 
-        XSSFCell cell;
-        row = sheet.createRow(0);
-        cell = row.createCell(0);
-        
-        try (FileOutputStream arcSalida = new FileOutputStream(rutaExcel)) {
-            wb.write(arcSalida);
-        }catch(IOException e){
-                
-        }
-        
-        try {
-			wb.close();
-        } catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
+        return wb;
     }
-
 
 	public String getValorNuevo() {
 		return valorNuevo;

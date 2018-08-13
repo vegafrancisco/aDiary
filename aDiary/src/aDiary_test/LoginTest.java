@@ -11,8 +11,8 @@ public class LoginTest {
 	public void testLogin() {
 		//Se asume excel usuarios creados
 		Login login = new Login();
-		login.setNombreIngresado("Antonio");
-		login.setContrasenaIngresada("Ayres");
+		login.setNombreIngresado("ahorasi");
+		login.setContrasenaIngresada("quesi");
 		if(login.validarLogin()) {
 			System.out.println("Operacion exitosa");
 		}else {
