@@ -1,8 +1,8 @@
 package aDiary_data;
 
 import aDiary.Propietario;
-import java.io.File;
-
+import java.io.*;
+import org.apache.poi.common.*;
 /**
  *
  * @author tonio
@@ -22,6 +22,24 @@ public class CreacionCarpeta {
 		this.directorioCreado = file.mkdirs();
 	}
 
+	public void removerCarpetaYArchivos() {
+		File file = new File(this.rutaDirectorio);
+		try {
+			eliminarArchivos(file);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	private void eliminarArchivos(File file) throws IOException{
+		if (file.isDirectory()) {
+		    for (File c : file.listFiles()) eliminarArchivos(c);
+		}
+	    if (!file.delete()) throw new FileNotFoundException("Error en eliminar el archivo: " + file); 
+	}
+	
 	public String getRutaDirectorio() {
 		return rutaDirectorio;
 	}

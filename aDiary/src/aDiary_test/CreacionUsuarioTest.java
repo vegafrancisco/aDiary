@@ -13,6 +13,10 @@ public class CreacionUsuarioTest {
 
 	@Test
 	public void test() {
+		ManejoDatosTest init = new ManejoDatosTest();
+		
+		init.testInit();
+		
 		CreacionUsuario creacion = new CreacionUsuario();
 		Scanner scan = new Scanner(System.in);
 		
@@ -27,9 +31,15 @@ public class CreacionUsuarioTest {
 		
 		System.out.println("Creando perfil de administrador");
 		
+		System.out.println("Contraseña control parental:");
+		String controlParental = scan.nextLine();
+		
+		boolean estadoControlParental = false;
+		
 		creacion.setNombreUsrNuevo(usuario);
 		creacion.setContrasenaUsrNuevo(contraseña);
 		creacion.setPerfilNuevo("admin-" + usuario);
+		creacion.setContraseñaParentalUsrNuevo(controlParental);
 		Propietario usr = creacion.crearUsuario(verificador);
 		
 		if(usr != null) {

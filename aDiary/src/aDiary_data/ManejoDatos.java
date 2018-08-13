@@ -50,7 +50,7 @@ public class ManejoDatos {
 			CreateExcel nuevoExcel = new CreateExcel("./template.xlsx",0,rutaExcel,"Hoja1",(Map)map);
 			nuevoExcel.execute();
 			ModExcel template = new ModExcel();
-	    	template.moldearExcel(rutaExcel, 2, 0);
+	    	template.moldearExcel(rutaExcel, 5, 0);
 			return true;
 		}
 		return false;
@@ -90,31 +90,48 @@ public class ManejoDatos {
     	return mod.modificarCelda(rutaExcel, hoja);
     }
     
-    public boolean añadirUsuario(String usuario, String contraseña, int hoja) {
+    public boolean añadirUsuario(String usuario, String contraseña, String perfil,boolean estadoControl, String contraseñaControlParental, int hoja) {
     	String rutaExcel = "./usrdata/usuarios.xlsx";
     	ModExcel mod = new ModExcel(usuario, ""); 
-    	mod.prepararCeldas(rutaExcel, 2,0);
+    	mod.prepararCeldas(rutaExcel, 5,0);
     	if(mod.modificarCelda(rutaExcel, hoja)) {
     		mod.setValorNuevo(contraseña);
-    		return mod.modificarCelda(rutaExcel, hoja);
+    		if(mod.modificarCelda(rutaExcel, hoja)) {
+    			mod.setValorNuevo(perfil);
+    			if(mod.modificarCelda(rutaExcel, hoja)) {
+    				mod.setValorNuevo(booleanAString(estadoControl));
+    				if(mod.modificarCelda(rutaExcel, hoja)) {
+    					mod.setValorNuevo(contraseñaControlParental);
+    					return mod.modificarCelda(rutaExcel, hoja);
+    				}else {
+    					return false;
+    				}
+    			}else {
+    				return false;
+    			}
+    		} else {
+    			return false;
+    		}
     	}else {
     		return false;
     	}
     }
     
-    /*private void pasosCarpeta() {
-    	String rutaUsuario = "./usrdata/" + usrDato.getNombre();
-    	CreacionCarpeta carpeta = new CreacionCarpeta(rutaUsuario);
-    	carpeta.crearCarpeta();
-    	
-    	if(!usrDato.getPerfiles().isEmpty()) {
-    		for(int i = 0; i<usrDato.getPerfiles().size() ; i++) {
-    			carpeta.setRutaDirectorio(rutaUsuario + "/" + usrDato.getPerfiles().get(i));
-    			carpeta.crearCarpeta();
+    public boolean añadirPerfil(ArrayList<String> listaPerfiles, String perfilNuevo) {
+    	String rutaExcel = "./usrdata/usuarios.xlsx";
+    	String perfilConcatenado = "";
+    	String lineaPerfiles = "";
+    	if(listaPerfiles.isEmpty()) {
+    		perfilConcatenado = perfilNuevo;
+    	}else {
+    		for(int i = 0; i<listaPerfiles.size(); i++) {
+    			lineaPerfiles = listaPerfiles.get(i) + ";";
     		}
+    		perfilConcatenado = lineaPerfiles +  perfilNuevo + ";";
     	}
-    	
-    }*/
+    	ModExcel mod = new ModExcel(perfilConcatenado, lineaPerfiles);
+    	return mod.modificarCelda(rutaExcel, 0);
+    }
     
     public void crearArchivosPerfil(String perfilACrear) {
     	String rutaUsuario = "./usrdata/" + this.usrDato.getNombre() + "/" + perfilACrear;
@@ -137,7 +154,68 @@ public class ManejoDatos {
     	CreateExcel nuevoExcel = new CreateExcel("./template.xlsx",0,rutaExcel,"Hoja1",(Map)map);
     	nuevoExcel.execute();
     }
+    
+    public void eliminarDatosUsuario() {
+    	String rutaCarpeta = "./usrdata/" +  this.usrDato.getNombre();
+    	CreacionCarpeta eliminar = new CreacionCarpeta(rutaCarpeta);
+    	eliminar.removerCarpetaYArchivos();
+    	crearArchivosPerfil("admin-" + this.usrDato.getNombre());
+    }
 
+    public Propietario creacionPropietario(String nombre, String contraseña) {
+    	String rutaExcel = "./usrdata/usuarios.xlsx";
+    	BusquedaDatos busqueda = new BusquedaDatos();
+    	busqueda.setValorDeDato(nombre);
+    	if(busqueda.buscarCoincidencia(rutaExcel)) {
+    		Propietario lecturaUsr = new Propietario();
+    		LecturaExcel lecturaDeCeldas = new LecturaExcel();
+    		try {
+				lecturaDeCeldas.readContenidoCelda(busqueda.getDatoBusqueda().getFila(), busqueda.getDatoBusqueda().getColumna(), rutaExcel);
+				lecturaUsr.setNombre(lecturaDeCeldas.getContenidoCelda());
+				lecturaDeCeldas.readContenidoCelda(busqueda.getDatoBusqueda().getFila(), busqueda.getDatoBusqueda().getColumna()+1, rutaExcel);
+				lecturaUsr.setContrasena(lecturaDeCeldas.getContenidoCelda());
+				lecturaDeCeldas.readContenidoCelda(busqueda.getDatoBusqueda().getFila(), busqueda.getDatoBusqueda().getColumna()+2, rutaExcel);
+				lecturaUsr.setPerfiles(separarPerfiles(lecturaDeCeldas.getContenidoCelda()));
+				lecturaDeCeldas.readContenidoCelda(busqueda.getDatoBusqueda().getFila(), busqueda.getDatoBusqueda().getColumna()+3, rutaExcel);
+				lecturaUsr.setEstadoControlParental(estadosABoolean(lecturaDeCeldas.getContenidoCelda()));
+				lecturaDeCeldas.readContenidoCelda(busqueda.getDatoBusqueda().getFila(), busqueda.getDatoBusqueda().getColumna()+4, rutaExcel);
+				lecturaUsr.SetContrasenaControlParental(lecturaDeCeldas.getContenidoCelda());
+				return lecturaUsr;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    	return null;
+    }
+    
+    private ArrayList<String> separarPerfiles(String perfiles){
+    	String[] splitStr = perfiles.split(";");
+    	ArrayList<String> coleccionPerfiles = new ArrayList<>();
+    	coleccionPerfiles.toArray(splitStr);
+    	return coleccionPerfiles;
+    }
+    
+    private boolean estadosABoolean(String estado) {
+    	switch(estado) {
+    		case "true":
+    			return true;
+    		case "false":
+    			return false;
+    		default:
+    			return false;
+    	}
+    }
+    
+    private String booleanAString(boolean estado) {
+    	if(estado) {
+    		return "true";
+    		
+    	}else {
+    		return "false";
+    	}
+    }
+    
 	public ArrayList<Dato> getDatos() {
 		return datos;
 	}

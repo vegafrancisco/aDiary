@@ -70,10 +70,6 @@ public class ModExcel {
         XSSFRow row; 
         XSSFCell cell;
         
-        /*if(valor.equals("END!")){
-            sheet.createRow(numFila);
-        }*/
-        
         int[] posicionDato = obtenerPosicionDato(rutaExcel);
         
         if(posicionDato != null) {

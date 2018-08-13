@@ -62,9 +62,9 @@ public class Propietario {
 	 * 
 	 * @param contrasenaControlParental
 	 */
-	public void SetContrasenaControlParenta(String contrasenaControlParental) {
+	public void SetContrasenaControlParental(String contrasenaControlParental) {
 		// TODO - implement Propietario.SetContrasenaControlParenta
-		throw new UnsupportedOperationException();
+		this.contrasenaControlParental = contrasenaControlParental;
 	}
 
 	/**
@@ -94,9 +94,14 @@ public class Propietario {
 	
 
 
+	@Override
 	public String toString() {
 		// TODO - implement Propietario.toString
-		throw new UnsupportedOperationException();
-	}
+		return 	"Usuario: " + this.nombre + "\n" +
+				"Contraseña: " + this.contrasena + "\n" +
+				"Estado de control parental: " + this.estadoControlParental + "\n" +
+				"Contraseña control parental; " + this.contrasenaControlParental + "\n" +
+				"Perfil Activo: " + this.perfilActivo;
+	} 
 
 }

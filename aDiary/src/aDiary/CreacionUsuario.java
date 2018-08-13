@@ -7,6 +7,7 @@ public class CreacionUsuario {
 	
 	private String nombreUsrNuevo;
 	private String contrasenaUsrNuevo;
+	private String contraseñaParentalUsrNuevo;
 	private String perfilNuevo;
 
 	public CreacionUsuario() {
@@ -59,9 +60,11 @@ public class CreacionUsuario {
 		if(verificarContraseña(contraseñaVerificadora)) {
 			Propietario usr = new Propietario();
 			usr.setNombre(this.nombreUsrNuevo);
-			usr.setContrasena(this.nombreUsrNuevo);
+			usr.setContrasena(this.contrasenaUsrNuevo);
+			usr.SetContrasenaControlParental(contraseñaParentalUsrNuevo);
 			if(this.perfilNuevo != "default" && this.perfilNuevo != "") {
 				usr.setPerfilActivo(this.perfilNuevo);
+				usr.getPerfiles().add(this.perfilNuevo);
 			}
 			return usr;
 		}
@@ -71,7 +74,7 @@ public class CreacionUsuario {
 	public void guardarUsuario(Propietario usr) {
 		// TODO - implement CreacionUsuario.guardarUsuario
 		ManejoDatos manejo = new ManejoDatos(usr);
-		manejo.añadirUsuario(this.getNombreUsrNuevo(), this.getContrasenaUsrNuevo(), 0);
+		manejo.añadirUsuario(this.nombreUsrNuevo, this.contrasenaUsrNuevo, this.perfilNuevo,usr.getEstadoControlParental(), this.contraseñaParentalUsrNuevo, 0);
 		manejo.crearArchivosPerfil(usr.getPerfilActivo());
 		manejo.crearExcelRecompensa();
 	}
@@ -89,9 +92,9 @@ public class CreacionUsuario {
 	 * 
 	 * @param activado
 	 */
-	public void activarControlParental(boolean activado) {
+	public void activarControlParental(Propietario usr, boolean activado) {
 		// TODO - implement CreacionUsuario.activarControlParental
-		throw new UnsupportedOperationException();
+		usr.setEstadoControlParental(activado);
 	}
 
 
@@ -104,6 +107,18 @@ public class CreacionUsuario {
 
 	public void setPerfilNuevo(String perfilNuevo) {
 		this.perfilNuevo = perfilNuevo;
+	}
+
+
+
+	public String getContraseñaParentalUsrNuevo() {
+		return contraseñaParentalUsrNuevo;
+	}
+
+
+
+	public void setContraseñaParentalUsrNuevo(String contraseñaParentalUsrNuevo) {
+		this.contraseñaParentalUsrNuevo = contraseñaParentalUsrNuevo;
 	}
 	
 	

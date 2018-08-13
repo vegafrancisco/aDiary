@@ -5,10 +5,13 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import aDiary.Login;
+import aDiary.Propietario;
+import aDiary_data.ManejoDatos;
 
 public class Login_GUI_exp extends JFrame implements ActionListener{
 
 	private JButton ingresoButton;
+	private JButton creacionUsuarioButton;
     private JTextField nombreUsuarioTF;
     private JPasswordField contraseñaTF;
     private JLabel nombreUsuarioLabel;
@@ -19,6 +22,7 @@ public class Login_GUI_exp extends JFrame implements ActionListener{
         
         initComponents();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        
         elementSize();
         addWindow();
         
@@ -31,10 +35,11 @@ public class Login_GUI_exp extends JFrame implements ActionListener{
         this.nombreUsuarioTF = new JTextField("");
         this.contraseñaTF = new JPasswordField("");
         this.ingresoButton = new JButton("INGRESAR");
+        this.creacionUsuarioButton = new JButton("CREAR CUENTA");
     }
     
     public void elementSize(){
-        this.setSize(260, 300);
+    	this.setSize(260, 350);
         
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
@@ -44,6 +49,7 @@ public class Login_GUI_exp extends JFrame implements ActionListener{
         this.contraseñaLabel.setBounds(50, 100, 150, 25);
         this.contraseñaTF.setBounds(50, 130, 150, 25);
         this.ingresoButton.setBounds(50, 200, 150, 35);
+        this.creacionUsuarioButton.setBounds(50, 250, 150, 35);
     }
     
     public void addWindow(){
@@ -52,6 +58,7 @@ public class Login_GUI_exp extends JFrame implements ActionListener{
         this.add(this.contraseñaLabel);
         this.add(this.contraseñaTF);
         this.add(this.ingresoButton);
+        this.add(this.creacionUsuarioButton);
         this.add(new JLabel());
     }
 
@@ -65,7 +72,10 @@ public class Login_GUI_exp extends JFrame implements ActionListener{
 			login.setContrasenaIngresada(password);
 			if(login.validarLogin()) {
 				JOptionPane.showMessageDialog(this, "Operacion exitosa");
-				
+				ManejoDatos manejo = new ManejoDatos();
+				Propietario usr = manejo.creacionPropietario(login.getNombreIngresado(), login.getContrasenaIngresada());
+				JOptionPane.showMessageDialog(this, usr);
+				System.out.println(usr);
 				//NEW VENTANA!
 				this.setVisible(false);
 			}else {
