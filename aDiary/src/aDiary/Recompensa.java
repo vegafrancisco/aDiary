@@ -9,6 +9,7 @@ public class Recompensa {
 
 	public Recompensa() {
 		recompensas = new ArrayList<String>();
+		addRecompensasDefault();
 		
 	}
 
@@ -27,7 +28,7 @@ public class Recompensa {
 		this.nombreRecompensaElegida = nombreRecompensaElegida;
 	}
 
-	private void addRecompensasDefault() { //Reservado para toño
+	private void addRecompensasDefault() {
 		recompensas.add("Recompensa ejemplo");
 	}
 

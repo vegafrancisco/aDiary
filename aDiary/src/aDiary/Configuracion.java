@@ -39,7 +39,7 @@ public class Configuracion {
 		this.cajaRecompensas = cajaRecompensas;
 	}
 
-	private void cleanDatosUsuario() {
+	public void cleanDatosUsuario() {
 		// TODO - implement Configuracion.cleanDatosUsuario
 		ManejoDatos manejo = new ManejoDatos(this.propietarioActivo);
 		manejo.eliminarDatosUsuario();

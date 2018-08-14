@@ -20,6 +20,9 @@ public class Login_GUI_exp extends JFrame implements ActionListener{
     public Login_GUI_exp(String title){
         super(title);
         
+        ManejoDatos init = new ManejoDatos();
+        init.init();
+        
         initComponents();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         
@@ -76,8 +79,11 @@ public class Login_GUI_exp extends JFrame implements ActionListener{
 				Propietario usr = manejo.creacionPropietario(login.getNombreIngresado(), login.getContrasenaIngresada());
 				JOptionPane.showMessageDialog(this, usr);
 				System.out.println(usr);
-				//NEW VENTANA!
-				this.setVisible(false);
+				MenuPrincipal_GUI menu = new MenuPrincipal_GUI(usr.getNombre(), "Menu");
+				menu.setUsrActivo(usr);
+				;
+				menu.setVisible(true);
+				this.dispose();
 			}else {
 				JOptionPane.showMessageDialog(this, "Usuario o Contraseña erroneos");
 			}

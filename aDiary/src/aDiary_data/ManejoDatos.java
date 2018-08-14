@@ -7,6 +7,7 @@ import my.jutils.poi.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,6 +52,21 @@ public class ManejoDatos {
 			nuevoExcel.execute();
 			ModExcel template = new ModExcel();
 	    	template.moldearExcel(rutaExcel, 5, 0);
+	    	template.setValorNuevo("admin");
+	    	if(template.modificarCelda(rutaExcel, 0)) {
+	    		template.setValorNuevo("admin");
+	    		if(template.modificarCelda(rutaExcel, 0)) {
+	    			template.setValorNuevo("default");
+	    			if(template.modificarCelda(rutaExcel, 0)) {
+	    				template.setValorNuevo(booleanAString(false));
+	    				if(template.modificarCelda(rutaExcel, 0)) {
+	    					template.setValorNuevo("admin");
+	    					template.modificarCelda(rutaExcel, 0);
+	    				}
+	    			}
+	    		}
+	    	}
+	    	
 			return true;
 		}
 		return false;
@@ -143,9 +159,14 @@ public class ManejoDatos {
     private void crearExcelMisiones(String rutaExcel) {
     	//String rutaExcel = "./usrdata/" + this.usrDato.getNombre() + "/" + this.usrDato.getPerfilActivo()+"/misiones.xlsx";
     	HashMap map = new HashMap<Object, Object>();
-    	CreateExcel nuevoExcel = new CreateExcel("./template.xlsx",0,rutaExcel,"Hoja1",(Map)map);
+    	CreateExcel nuevoExcel = new CreateExcel("./templateMisiones.xlsx",0,rutaExcel,"Hoja1",(Map)map);
     	nuevoExcel.execute();
     	
+    }
+    
+    private void moldearExcelMisiones(String rutaExcel) {
+    	Calendar calendario = Calendar.getInstance();
+    	calendario.getTime();
     }
     
     public void crearExcelRecompensa(){
