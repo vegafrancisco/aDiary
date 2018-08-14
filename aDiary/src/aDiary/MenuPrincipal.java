@@ -106,7 +106,7 @@ public class MenuPrincipal {
 	public void guardarMisionDia(Mision misionNueva) {
 		
 		ManejoDatos manejo = new ManejoDatos();
-		manejo.añadirMision(misionNueva.getMision(), misionNueva.getIsCompleted(), 0);
+		manejo.añadirMision(misionNueva.getMision(), Boolean.toString(misionNueva.getIsCompleted()), 0);
 	}
 
 	/**
